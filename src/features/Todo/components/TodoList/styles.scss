@@ -1,0 +1,11 @@
+.todo-list{
+    list-style:decimal;
+    &>li{
+        cursor: pointer;
+    }
+    & > li.completed{
+        color: green;
+        font-style: italic;
+        text-decoration: line-through;
+    }
+}   
