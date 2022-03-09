@@ -1,11 +1,12 @@
-import './App.css';
-import { Link, NavLink, Route, Routes } from 'react-router-dom';
-import AlbumFeature from './features/Album';
-import TodoFeature from './features/Todo';
-import NotFound from './components/NotFound';
+import Header from 'components/Header';
 import { useEffect } from 'react';
-
+import { Route, Switch } from 'react-router-dom';
 import productApi from './api/productApi';
+import './App.css';
+import NotFound from './components/NotFound';
+import AlbumFeature from './features/Album';
+import CounterFeature from './features/Counter';
+import TodoFeature from './features/Todo';
 
 function App() {
     useEffect(() => {
@@ -18,18 +19,16 @@ function App() {
         };
         fetchProducts();
     }, []);
+
     return (
         <div className="App">
-            <div className="navlink">
-                <NavLink to="/todos">Todos</NavLink>
-                <NavLink to="/albums">Albums</NavLink>
-            </div>
-            <Routes>
-                <Route path="/todos" element={<TodoFeature />} />
-                <Route path="/albums" element={<AlbumFeature />} />
-                <Route path="/*" element={<NotFound />}></Route>
-            </Routes>
-            Footer
+            <Header />
+            <Switch>
+                <Route path="/" component={CounterFeature} exact />
+                <Route path="/todos" component={TodoFeature} />
+                <Route path="/albums" component={AlbumFeature} />
+                <Route path="/*" component={NotFound}></Route>
+            </Switch>
         </div>
     );
 }
