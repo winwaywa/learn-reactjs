@@ -1,4 +1,7 @@
-.menu{
-    &__btn{
-    }
+
+.btn--close{
+    position: absolute !important;
+    top: 1px;
+    right:1px;
+    width: 50px;
 }
