@@ -1,0 +1,9 @@
+.filter__price{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    & span{
+        margin: 0 8px;
+    }
+}

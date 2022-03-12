@@ -6,6 +6,7 @@ import productApi from 'api/productApi';
 import ProductsSkeletonList from '../../components/ProductsSkeletonList';
 import ProductList from 'features/Product/components/ProductList';
 import ProductSort from 'features/Product/components/ProductSort';
+import ProductFilters from 'features/Product/components/ProductFilters';
 
 ListPage.propTypes = {};
 
@@ -21,6 +22,7 @@ function ListPage(props) {
 
     useEffect(() => {
         (async () => {
+            setLoading(true);
             try {
                 const { data, pagination } = await productApi.getAll(filters);
                 console.log({ data, pagination });
@@ -40,6 +42,7 @@ function ListPage(props) {
             _page: page,
         }));
     };
+
     // sort
     const handleSortChange = (newSortValue) => {
         setFilters((prevFilters) => ({
@@ -48,12 +51,22 @@ function ListPage(props) {
         }));
     };
 
+    //filters
+    const hanldeFiltersChange = (newFilters) => {
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            ...newFilters,
+        }));
+    };
+
     return (
         <Box>
             <Container>
                 <Grid className="products" container spacing={1}>
-                    <Grid c lassName="products__filter" item>
-                        <Paper elevation={0}>left column</Paper>
+                    <Grid className="products__filter" item>
+                        <Paper elevation={0}>
+                            <ProductFilters filters={filters} onChange={hanldeFiltersChange} />
+                        </Paper>
                     </Grid>
                     <Grid className="products__list" item>
                         <Paper elevation={0}>
