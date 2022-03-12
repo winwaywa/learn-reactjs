@@ -79,6 +79,11 @@ export default function Header() {
                             Albums
                         </Button>
                     </NavLink>
+                    <NavLink to="/products" exact>
+                        <Button className="menu__btn menu__btn--home" color="inherit">
+                            Products
+                        </Button>
+                    </NavLink>
                     {!isLoggedIn && (
                         <Button
                             className="menu__btn menu__btn--login"

@@ -1,0 +1,15 @@
+.products{
+    &__filter{
+        width: 250px;
+    }
+    &__list{
+        flex:1 1 0; 
+    }
+    &__page {
+        margin-top: 20px;
+        padding-bottom: 20px;
+        & ul{
+            justify-content: center;
+        }
+    }
+}
