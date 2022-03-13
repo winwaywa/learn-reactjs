@@ -22,6 +22,7 @@ function ListPage(props) {
     const [pagination, setPagination] = React.useState({ page: 1, total: 12, limit: 12 });
 
     useEffect(() => {
+        console.log('listpage:', filters);
         (async () => {
             setLoading(true);
             try {
@@ -49,6 +50,7 @@ function ListPage(props) {
         setFilters((prevFilters) => ({
             ...prevFilters,
             _sort: newSortValue,
+            _page: 1, // quay về lại trang 1
         }));
     };
 
@@ -57,9 +59,11 @@ function ListPage(props) {
         setFilters((prevFilters) => ({
             ...prevFilters,
             ...newFilters,
+            _page: 1, // quay về lại trang 1
         }));
     };
 
+    // filters view
     const setNewFilters = (newFilters) => {
         setFilters(newFilters);
     };

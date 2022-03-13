@@ -2,7 +2,6 @@ import './styles.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Chip, Stack } from '@mui/material';
-import { Category } from '@mui/icons-material';
 import categoryApi from 'api/categoryApi';
 
 FilterViewer.propTypes = {
@@ -24,7 +23,7 @@ const FILTER_LIST = [
             //có isFreeShip thì xoá , ko thì thêm
             if (newFilters.isFreeShip) delete newFilters.isFreeShip;
             else newFilters.isFreeShip = true;
-            return newFilters;
+            return { ...newFilters, _page: 1 };
         },
     },
     {
@@ -36,7 +35,7 @@ const FILTER_LIST = [
         onRemove: (filters) => {
             const newFilters = { ...filters };
             if (newFilters.isPromotion) delete newFilters.isPromotion;
-            return newFilters;
+            return { ...newFilters, _page: 1 };
         },
         ontoggle: () => {},
     },
@@ -64,7 +63,7 @@ const FILTER_LIST = [
                 delete newFilters.salePrice_gte;
                 delete newFilters.salePrice_lte;
             }
-            return newFilters;
+            return { ...newFilters, _page: 1 };
         },
         ontoggle: () => {},
     },
@@ -79,7 +78,7 @@ const FILTER_LIST = [
         onRemove: (filters) => {
             const newFilters = { ...filters };
             if (Object.keys(newFilters).includes('category.id')) delete newFilters['category.id'];
-            return newFilters;
+            return { ...newFilters, _page: 1 };
         },
         ontoggle: () => {},
     },
