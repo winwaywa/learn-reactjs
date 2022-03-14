@@ -2,25 +2,33 @@ import './styles.scss';
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Box, Container, Grid, Pagination, Paper } from '@mui/material';
+import queryString from 'query-string';
 import productApi from 'api/productApi';
 import ProductsSkeletonList from '../../components/ProductsSkeletonList';
 import ProductList from 'features/Product/components/ProductList';
 import ProductSort from 'features/Product/components/ProductSort';
 import ProductFilters from 'features/Product/components/ProductFilters';
 import FilterViewer from 'features/Product/components/FilterViewer';
+import { useLocation, useHistory } from 'react-router-dom';
 
 ListPage.propTypes = {};
 
 function ListPage(props) {
+    const history = useHistory();
+    const location = useLocation();
+    const queryParams = queryString.parse(location.search); //chuyển chuỗi từ url sang object để set filter default
+
     const [productList, setProductList] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
     const [filters, setFilters] = React.useState({
-        _page: 1,
-        _limit: 12,
-        _sort: 'salePrice:ASC',
+        ...queryParams,
+        _page: Number.parseInt(queryParams._page) || 1,
+        _limit: Number.parseInt(queryParams._limit) || 12,
+        _sort: queryParams._sort || 'salePrice:ASC',
     });
     const [pagination, setPagination] = React.useState({ page: 1, total: 12, limit: 12 });
 
+    //call api product
     useEffect(() => {
         console.log('listpage:', filters);
         (async () => {
@@ -36,6 +44,17 @@ function ListPage(props) {
             setLoading(false);
         })();
     }, [filters]);
+
+    //khi filter thay đổi thì update lại url
+    useEffect(() => {
+        history.push({
+            pathname: history.location.pathname, // dùng  history.location.pathname thay cho location.pathname vì thằng location nó thay đổi còn thằng history nó chỉ thay đổi location chứ ko thay đổi history
+            // search: Object.entries(filters)
+            //     .map((filter) => `${filter[0]}=${filter[1]}`)
+            //     .join('&'),
+            search: queryString.stringify(filters), //queryString giúp làm thay cái trên
+        });
+    }, [history, filters]);
 
     // khi chuyển trang
     const handlePageChange = (e, page) => {
