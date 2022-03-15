@@ -1,0 +1,13 @@
+.product{
+    &__image{
+        width: 400px;
+        padding: 15px;
+        padding: 15px;
+        border-right: 1px solid #F4F4F4;
+    }
+    &__info{
+        flex:1 1 0;
+        padding: 15px;
+
+    }
+}

@@ -1,0 +1,35 @@
+.product{
+    &__box{
+        border-bottom: 1px solid rgb(151, 145, 145) ;
+    }
+    &__price{
+        height: 100px;
+    }
+    &__sale-price{
+        font-weight: 600;
+        font-size: 24px;
+    }
+    &__original-price{
+        text-decoration: line-through;
+    }
+    &__promotion-percent{
+        color: #fff;
+        background-color: red;
+        width: 50px;
+        padding: 8px;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 75% 75%, 75% 100%, 50% 75%, 0% 75%);
+        animation: scale 1s linear infinite;
+    }
+
+}
+@keyframes scale{
+    0%{
+        padding: 8px;
+    }
+    50%{
+        padding:5px;
+    }
+    100%{
+        padding:8px;
+    }
+}

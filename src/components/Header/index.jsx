@@ -1,6 +1,6 @@
-import { AccountCircle } from '@mui/icons-material';
+import { AccountCircle, AddBox } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
-import CodeIcon from '@mui/icons-material/Code';
+import logo from '../../logo.svg';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
@@ -60,10 +60,10 @@ export default function Header() {
         <>
             <AppBar className="menu" position="static">
                 <Toolbar>
-                    <CodeIcon />
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Shop
-                    </Typography>
+                    <Box variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <img className="logo" src={logo} alt="logo" />
+                    </Box>
+
                     <NavLink to="/" exact>
                         <Button className="menu__btn menu__btn--home" color="inherit">
                             Home

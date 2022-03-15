@@ -15,8 +15,7 @@ function ProductFeature(props) {
         <Box pt={4}>
             <Switch>
                 <Route path={match.url} component={ListPage} exact />
-                <Route path={`${match.url}/:id`} component={DetailsPage} />
-                {/* <Route path={`${match.url}/*`} component={NotFound} /> */}
+                <Route path={`${match.url}/:productId`} component={DetailsPage} />
             </Switch>
         </Box>
     );

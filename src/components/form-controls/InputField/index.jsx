@@ -24,16 +24,23 @@ function InputField(props) {
         <Controller
             name={name}
             control={form.control}
-            as={TextField}
-            //những cái ở dưới nó sẽ bỏ vào TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            label={label}
-            disabled={disabled}
-            //in lỗi
-            error={!!hasError}
-            helperText={errors[name]?.message}
+            render={({ onChange, onBlur, value, name }) => (
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    label={label}
+                    disabled={disabled}
+                    //in lỗi
+                    error={!!hasError}
+                    helperText={errors[name]?.message}
+                    //
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    value={value}
+                    name={name}
+                />
+            )}
         ></Controller>
     );
 }

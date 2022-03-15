@@ -1,7 +1,24 @@
-
+.menu a{
+    color:aliceblue;
+}
 .btn--close{
     position: absolute !important;
     top: 1px;
     right:1px;
     width: 50px;
+}
+
+.logo{
+    width: 100px;
+    filter: drop-shadow(0 -3px 2px rgb(180, 158, 158));
+    animation: moveUpDown 3s linear infinite;
+}
+
+@keyframes moveUpDown{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }

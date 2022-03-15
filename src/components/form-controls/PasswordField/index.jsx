@@ -56,28 +56,31 @@ function PasswordField(props) {
                     //controller
                     name={name}
                     control={form.control}
-                    as={OutlinedInput} //ko hỗ trợ in lỗi helperText nên dùng formHeplperText
-                    // của OutlinedInput
-                    id={name}
-                    type={showPassword ? 'text' : 'password'}
-                    label={label}
-                    disabled={disabled}
-                    //in lỗi
-                    // error={!!hasError}
-                    // helperText={errors[name]?.message}
-                    //
-                    endAdornment={
-                        <InputAdornment position="end">
-                            <IconButton
-                                aria-label="toggle password visibility"
-                                onClick={handleClickShowPassword}
-                                // onMouseDown={handleMouseDownPassword}
-                                edge="end"
-                            >
-                                {showPassword ? <VisibilityOff /> : <Visibility />}
-                            </IconButton>
-                        </InputAdornment>
-                    }
+                    render={({ onChange, onBlur, value, name }) => (
+                        <OutlinedInput
+                            id={name}
+                            type={showPassword ? 'text' : 'password'}
+                            label={label}
+                            disabled={disabled}
+                            onChange={onChange}
+                            onBlur={onBlur}
+                            value={value}
+                            name={name}
+                            // button ẩn/hiện pass
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        // onMouseDown={handleMouseDownPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
+                    )}
                 />
                 {/* in lỗi */}
                 <FormHelperText>{errors[name]?.message}</FormHelperText>

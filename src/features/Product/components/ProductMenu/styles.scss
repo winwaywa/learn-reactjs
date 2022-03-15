@@ -1,0 +1,11 @@
+.product-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & li{
+        padding: 12px 18px;
+        & a{
+            color: #000;
+        }
+    }
+}
