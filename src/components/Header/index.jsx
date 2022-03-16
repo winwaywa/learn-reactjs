@@ -1,7 +1,8 @@
 import { AccountCircle, AddBox } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import logo from '../../logo.svg';
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { Badge, IconButton, Menu, MenuItem } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -16,6 +17,8 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import './styles.scss';
+import { cartItemsCountSelector } from 'features/Cart/selector';
+import { useHistory } from 'react-router-dom';
 
 const MODE = {
     LOGIN: 'login',
@@ -23,7 +26,10 @@ const MODE = {
 };
 
 export default function Header() {
+    const history = useHistory();
+
     const dispatch = useDispatch();
+    const cartItemsCount = useSelector(cartItemsCountSelector);
 
     const loggedUser = useSelector((state) => state.user.current);
     const isLoggedIn = !!loggedUser;
@@ -56,6 +62,13 @@ export default function Header() {
         setAnchorEl(null);
     };
 
+    //cart click
+    const handleCartClick = () => {
+        history.push({
+            pathname: '/cart',
+        });
+    };
+
     return (
         <>
             <AppBar className="menu" position="static">
@@ -84,6 +97,16 @@ export default function Header() {
                             Products
                         </Button>
                     </NavLink>
+                    <IconButton
+                        size="large"
+                        aria-label="show product's quantity"
+                        color="inherit"
+                        onClick={handleCartClick}
+                    >
+                        <Badge badgeContent={cartItemsCount} color="error">
+                            <ShoppingCartIcon />
+                        </Badge>
+                    </IconButton>
                     {!isLoggedIn && (
                         <Button
                             className="menu__btn menu__btn--login"

@@ -19,9 +19,6 @@ function ProductInfo({ product = {} }) {
                 {shortDescription}
             </Typography>
             <Box mt={2} className="product__price">
-                {Boolean(promotionPercent) && (
-                    <Box className="product__promotion-percent">{`-${promotionPercent}%`}</Box>
-                )}
                 <Box mr={2} component="span" className="product__sale-price">
                     {formatPrice(salePrice)}
                 </Box>
@@ -31,6 +28,12 @@ function ProductInfo({ product = {} }) {
                     </Box>
                 ) : (
                     ''
+                )}
+                {Boolean(promotionPercent) && (
+                    <Box
+                        component="span"
+                        className="product__promotion-percent"
+                    >{`-${promotionPercent}%`}</Box>
                 )}
             </Box>
         </Box>

@@ -12,10 +12,14 @@ import { Switch, Route } from 'react-router-dom';
 import ProductDescription from 'features/Product/components/ProductDescription';
 import ProductAdditional from 'features/Product/components/ProductAdditional';
 import ProductReview from 'features/Product/components/ProductReview';
+import { useDispatch } from 'react-redux';
+import { addToCart } from 'features/Cart/cartSlice';
 
 DetailsPage.propTypes = {};
 
 function DetailsPage(props) {
+    const dispatch = useDispatch();
+
     //lấy productId từ params
     const {
         params: { productId },
@@ -33,7 +37,10 @@ function DetailsPage(props) {
     }
 
     const handleAddToCartSubmit = (formValues) => {
-        console.log(formValues);
+        const { quantity } = formValues;
+        const action = addToCart({ id: productId, product, quantity });
+        console.log(action);
+        dispatch(action);
     };
 
     return (

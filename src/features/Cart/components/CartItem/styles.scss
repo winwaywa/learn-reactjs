@@ -1,0 +1,13 @@
+.cart{
+
+    &__item{
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__thumbnail{
+        width: 100px;
+    }
+}
